@@ -20,7 +20,6 @@ const inboxTable = async ( Inbox , DataTypes  )=> {
             type: DataTypes.STRING(200),
             allowNull: false,
             isEmail: true,
-           
 
         },
         toEmail:{
@@ -46,7 +45,7 @@ const inboxTable = async ( Inbox , DataTypes  )=> {
         
     
      
-    })
+    },{ sequelize, modelName: 'inbox' })
 
     // Create only if it Exists
     
@@ -59,18 +58,12 @@ await Inbox.sync( { alter: true } )
 
 
 
-
-
-
-
-
 class Inbox extends Model
 
 {
 // define extra method for model to posses
 
 }
-
 
 
 

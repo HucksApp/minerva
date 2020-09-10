@@ -69,6 +69,7 @@ import socks from 'socks'
         Mailer.#transporter = nodemailer.createTransport(this.#option)
     }
 
+    
     async sendText( data ){
         try{
 

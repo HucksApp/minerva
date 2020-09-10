@@ -1,5 +1,4 @@
 import dotenv from 'dotenv'
-
 import Mailer from './mailer/mailer.mjs';
 
 dotenv.config()

@@ -1,0 +1,190 @@
+{ "lol":[
+    {
+        "_id": "5f58b7a4075626065aaa752a",
+        "message": "Hi",
+        "receiver": "5f004feae528a90017327f3b",
+        "sender": "5f4ea9d045cc6b736870a076",
+        "senderInfo": {
+            "_id": "5f58b7a4075626065aaa752b",
+            "name": "Thomas"
+        },
+        "receiverInfo": {
+            "_id": "5f58b7a4075626065aaa752c",
+            "name": "ME"
+        }
+    },
+    {
+        "_id": "5f57f190075626065aaa600d",
+        "message": "When I click on, I just see myself. I doubt the connection was established",
+        "receiver": "5f4e646822ab43702ee29ebb",
+        "sender": "5f004feae528a90017327f3b",
+        "senderInfo": {
+            "_id": "5f57f190075626065aaa600e",
+            "name": "Me"
+        },
+        "receiverInfo": {
+            "_id": "5f57f190075626065aaa600f",
+            "name": "John"
+        }
+    },
+    {
+        "_id": "5f57f08d075626065aaa5eed",
+        "message": "I think I lost all the calls. The session takes a while to load",
+        "receiver": "5f4e646822ab43702ee29ebb",
+        "sender": "5f004feae528a90017327f3b",
+        "senderInfo": {
+            "_id": "5f57f08d075626065aaa5eee",
+            "name": "Me "
+        },
+        "receiverInfo": {
+            "_id": "5f57f08d075626065aaa5eef",
+            "name": "John"
+    
+        }
+    },
+    {
+        "_id": "5f57f068075626065aaa5eae",
+        "message": "Kk",
+        "receiver": "5f004feae528a90017327f3b",
+        "sender": "5f4e646822ab43702ee29ebb",
+        "senderInfo": {
+            "_id": "5f57f068075626065aaa5eaf",
+            "name": "John"
+        },
+        "receiverInfo": {
+            "_id": "5f57f068075626065aaa5eb0",
+            "name": "Me"
+        }
+    },
+    {
+        "_id": "5f57efd3075626065aaa5e2d",
+        "message": "I'm available now",
+        "receiver": "5f4e646822ab43702ee29ebb",
+        "sender": "5f004feae528a90017327f3b",
+        "senderInfo": {
+            "_id": "5f57efd3075626065aaa5e2e",
+            "name": "Me"
+        },
+        "receiverInfo": {
+            "_id": "5f57efd3075626065aaa5e2f",
+            "name": "John"
+        }
+    },
+    {
+        "_id": "5f57ee75075626065aaa5dcb",
+        "message": "Ok",
+        "receiver": "5f4e646822ab43702ee29ebb",
+        "sender": "5f004feae528a90017327f3b",
+        "senderInfo": {
+            "_id": "5f57ee75075626065aaa5dcc",
+            "name": "Me"
+        },
+        "receiverInfo": {
+            "_id": "5f57ee75075626065aaa5dcd",
+            "name": "John"
+        }
+    },
+    {
+        "_id": "5f57ee5f075626065aaa5d99",
+        "message": "Mark available let me try ",
+        "receiver": "5f004feae528a90017327f3b",
+        "sender": "5f4e646822ab43702ee29ebb",
+        "attachment": null,
+        "type": 1,
+        "senderInfo": {
+            "_id": "5f57ee5f075626065aaa5d9a",
+            "name": "John"
+        },
+        "receiverInfo": {
+            "_id": "5f57ee5f075626065aaa5d9b",
+            "name": "Me"
+        }
+    },
+    {
+        "_id": "5f57ee23075626065aaa5d6d",
+        "message": "I got the notification but it just didn't connect",
+        "receiver": "5f4e646822ab43702ee29ebb",
+        "sender": "5f004feae528a90017327f3b",
+        "senderInfo": {
+            "_id": "5f57ee23075626065aaa5d6e",
+            "name": "Me"
+        },
+        "receiverInfo": {
+            "_id": "5f57ee23075626065aaa5d6f",
+            "name": "John"
+        }
+    },
+    {
+        "_id": "5f57ede3075626065aaa5d46",
+        "message": "Didn't go",
+        "receiver": "5f004feae528a90017327f3b",
+        "sender": "5f4e646822ab43702ee29ebb",
+        "senderInfo": {
+            "_id": "5f57ede3075626065aaa5d47",
+            "name": "John"
+        },
+        "receiverInfo": {
+            "_id": "5f57ede3075626065aaa5d48",
+            "name": "Me"
+        }
+    },
+    {
+        "_id": "5f57edd9075626065aaa5d38",
+        "message": "I tried to call",
+        "receiver": "5f004feae528a90017327f3b",
+        "sender": "5f4e646822ab43702ee29ebb",
+        "senderInfo": {
+            "_id": "5f57edd9075626065aaa5d39",
+            "name": "John"
+        },
+        "receiverInfo": {
+            "_id": "5f57edd9075626065aaa5d3a",
+            "name": "Me"
+        }
+    },
+    {
+        "_id": "5f57ed8a075626065aaa5d19",
+        "message": "Hi",
+        "receiver": "5f4e646822ab43702ee29ebb",
+        "sender": "5f004feae528a90017327f3b",
+        "senderInfo": {
+            "_id": "5f57ed8a075626065aaa5d1a",
+            "name": "Me"
+        },
+        "receiverInfo": {
+            "_id": "5f57ed8a075626065aaa5d1b",
+            "name": "John"
+        }
+    },
+    
+    {
+        "_id": "5f58b7a4075626065aaa752a",
+        "message": "Hi",
+        "receiver": "5f004feae528a90017327f3b",
+        "sender": "5f4ea9d045cc6b736870a076",
+        "senderInfo": {
+            "_id": "5f58b7a4075626065aaa752b",
+            "name": "Jane"
+        },
+        "receiverInfo": {
+            "_id": "5f58b7a4075626065aaa752c",
+            "name": "ME"
+        }
+    },
+    
+    {
+        "_id": "5f58b7a4075626065aaa752a",
+        "message": "Hi",
+        "receiver": "5f004feae528a90017327f3b",
+        "sender": "5f4ea9d045cc6b736870a076",
+        "receiverInfo": {
+            "_id": "5f58b7a4075626065aaa752b",
+            "name": "Jane"
+        },
+        "senderInfo": {
+            "_id": "5f58b7a4075626065aaa752c",
+            "name": "ME"
+        }
+    }
+    
+    ] }
