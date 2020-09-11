@@ -1,5 +1,5 @@
 
-export const runDbTest = db => {
+export const runDbConnectTest = async (db ) => {
     try {
         await db.authenticate();
         console.log('Connection has been established successfully.');
