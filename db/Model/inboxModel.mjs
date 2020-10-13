@@ -12,6 +12,8 @@ const inboxTable = async ( Inbox , db, Sequelize  )=> {
    await Inbox.init({
 
         messageId:{
+            //related to file model if attachment file is true 
+
                 type: DataTypes.UUID,
                 defaultValue: Sequelize.UUIDV4,
                 unique: true,
@@ -24,23 +26,34 @@ const inboxTable = async ( Inbox , db, Sequelize  )=> {
             isEmail: true,
 
         },
+        userId:{
+            type: DataTypes.UUID,
+            defaultValue: Sequelize.UUIDV4,
+            unique: true,
+        },
         toEmail:{
             
             type: DataTypes.STRING(200),
             allowNull: false,
             isEmail: true
             // add the referenced table first ---->  User
-            /*
-            ,references:{
-                model: 'User',
-                key:'username'
-            }*/
+            
+            //,references:{
+            //    model: 'User',
+            //    key:'username'
+            //}
             
         },
         subject:{
             type: DataTypes.STRING(150),
             allowNull: true
            
+        },
+        attachmentFile:{
+            // related to  file model if true
+
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         },
         message: {
             type: DataTypes.STRING(600),
@@ -58,7 +71,12 @@ const inboxTable = async ( Inbox , db, Sequelize  )=> {
         
     
      
-    },{ sequelize: db, modelName: 'Inbox' })
+    },{ sequelize: db, modelName: 'inbox' })
+
+
+
+
+
 
     // Create only if it Exists
     
@@ -83,31 +101,61 @@ static startInbox ( Inbox, db, Sequelize  ){
 
 }
 
-getAllInbox(){
 
-// get all selected messages
+// Admin priviledge alone
+async getAllInbox(){
 
-// get  one selected message
+    let inbox = await Inbox.findAll()
 
-//get All message
+    return inbox
+
+    
+}
 
 
+
+
+async getInbox({ email, id }){
+
+let inbox = await Inbox.findAll({
+                                where: {
+                                     email,
+                                     messageId: id
+                                }
+})
+
+    return inbox
 
 }
 
 
-saveToInbox(){
 
-// save single or  multiple to messages to inbox
 
+saveToInbox(data){
+// save single 
+
+     Inbox.create(data)
 
 }
 
-deleteFromInbox(){
+
+
+
+
+ deleteFromInbox({email, id}){
 
 // delete single or multiple selected  messages from inbox
 
 // NOTE::   -> save deleted mesage to DeleteBox
+
+ Inbox.destroy(
+        {
+            where: {
+                messageId: id,
+                email
+            }
+        }
+)
 
 
 }

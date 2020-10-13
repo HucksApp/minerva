@@ -45,7 +45,7 @@ export const connectDbUsingMsql = async ( dbCreator )=>{
 
 
 
-//Create Table with sql in Nomal Driver
+//Create Table with sql in Normal Driver
 export const createDbTables_sql = db => {
   db.query(`
   
