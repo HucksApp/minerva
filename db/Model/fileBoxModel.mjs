@@ -117,31 +117,31 @@ export default class Filebox extends Model {
 
 
 
-    addFiles =  data => {
+    addFiles = data => {
 
         // save single or  multiple to files to filebox
         if (Array.isArray(data)) {
 
             for (obj in data) {
 
-                 Filebox.create(obj)
+                Filebox.create(obj)
 
             }
 
 
         } else {
 
-             Filebox.create(data)
+            Filebox.create(data)
         }
     }
 
 
 
-    deleteFile = id =>{
+    deleteFile = id => {
 
         // delete single 
 
-         Filebox.destroy(
+        Filebox.destroy(
             {
                 where: {
                     creationId: id

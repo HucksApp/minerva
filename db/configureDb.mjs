@@ -1,40 +1,40 @@
 
 
-function writeForeignKey( { hasRel, belongRel, fromModel, toModel , field } ){
-    switch(hasRel){
+function writeForeignKey({ hasRel, belongRel, fromModel, toModel, field }) {
+    switch (hasRel) {
 
         case 'hasOne':
-            fromModel.hasOne(toModel, { ...field} );     
+            fromModel.hasOne(toModel, { ...field });
             break;
         case 'hasMany':
-            fromModel.hasMany(toModel, { ...field} ); 
+            fromModel.hasMany(toModel, { ...field, onDelete: 'cascade' });
             break;
         default:
 
-    } 
-    switch(belongRel){
+    }
+    switch (belongRel) {
 
         case 'belongsTo':
-            toModel.belongsTo( fromModel );     
+            toModel.belongsTo(fromModel);
             break;
         case 'belongsToMany':
-            toModel.belongsToMany( fromModel ); 
+            toModel.belongsToMany(fromModel);
             break;
         default:
 
-    } 
+    }
 
-    
+
 }
 
 
 
-export default function configRelation ( relationship ){
+export default function configRelation(relationship) {
 
     if (Array.isArray(relationship)) {
 
-    relationship.forEach(  obj=>{ writeForeignKey(obj) }  )
-    }else{
+        relationship.forEach(obj => { writeForeignKey(obj) })
+    } else {
         writeForeignKey(relationship)
     }
 

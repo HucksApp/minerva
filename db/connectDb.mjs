@@ -1,44 +1,44 @@
 
 // connect sequelizer to db
-export const connectDbUsingSequelize =  (sequelize, type = 'postgres', { DATABASE_HOST='localhost', DATABASE, DATABASE_USERNAME, DATABASE_PASSWORD }  ) =>{
+export const connectDbUsingSequelize = (sequelize, type = 'postgres', { DATABASE_HOST = 'localhost', DATABASE, DATABASE_USERNAME, DATABASE_PASSWORD }) => {
 
-    const db =  new sequelize( DATABASE, DATABASE_USERNAME, DATABASE_PASSWORD, {
-        host: DATABASE_HOST,
-         define: {
-              freezeTableName: true
-             },
-             logging: false,  // disable logging      
-              dialect: type
-      });
+  const db = new sequelize(DATABASE, DATABASE_USERNAME, DATABASE_PASSWORD, {
+    host: DATABASE_HOST,
+    define: {
+      freezeTableName: true
+    },
+    logging: false,  // disable logging      
+    dialect: type
+  });
 
-      return db
+  return db
 }
 
 
 
 
 // connect to db using normal mysql Driver
-export const connectDbUsingMsql = async ( dbCreator )=>{
+export const connectDbUsingMsql = async (dbCreator) => {
 
   const db = dbCreator.createConnection({
 
-                host:"",
-                user:"",
-                password: ""
+    host: "",
+    user: "",
+    password: ""
 
   })
-  try{
+  try {
 
     await db.connect()
     return db
 
   }
-  catch (err){ 
-      
+  catch (err) {
+
     console.log(err)
 
-}
-       
+  }
+
 
 }
 
@@ -61,6 +61,5 @@ export const createDbTables_sql = db => {
   
   
                       `)
-  
-  }
-  
+
+}
