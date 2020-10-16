@@ -1,12 +1,13 @@
 import express from 'express'   
+import {getInboxHandler} from './handler.mjs'
+
+const inboxRoutes = express.Router();
 
 
-const inboxRouter = express.Router();
+inboxRoutes.get('/', getInboxHandler)
 
-
-inboxRouter.get('/')
-inboxRouter.post('/')
-inboxRouter.delete('/')
+//inboxRouter.post('/')
+//inboxRouter.delete('/')
 
 
 

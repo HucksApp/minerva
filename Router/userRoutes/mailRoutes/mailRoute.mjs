@@ -1,20 +1,21 @@
 import express from 'express'   
 import inboxRouter from './inbox/inbox.mjs'
-import sentboxRouter from './inbox/sentbox.mjs'
+//import sentboxRouter from './inbox/sentbox.mjs'
 
 
 const maillRoutes = express.Router();
 
 
-
-maillRoutes.use('user/mail', ()=>{
+/*
+maillRoutes.use('/mail', ()=>{
 
                 
 })
 
+*/
 
 maillRoutes.use('/inbox', inboxRouter)
-maillRoutes.use('/sentbox', sentboxRouter)
+//maillRoutes.use('/sentbox', sentboxRouter)
 
 
 
