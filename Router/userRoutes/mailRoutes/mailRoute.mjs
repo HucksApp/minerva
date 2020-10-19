@@ -3,7 +3,7 @@ import inboxRouter from './inbox/inbox.mjs'
 //import sentboxRouter from './inbox/sentbox.mjs'
 
 
-const maillRoutes = express.Router();
+const mailApp = express();
 
 
 /*
@@ -14,7 +14,8 @@ maillRoutes.use('/mail', ()=>{
 
 */
 
-maillRoutes.use('/inbox', inboxRouter)
+
+mailApp.use('/inbox', inboxRouter)
 //maillRoutes.use('/sentbox', sentboxRouter)
 
 
@@ -26,4 +27,4 @@ maillRoutes.use('/inbox', inboxRouter)
 //signIn signOut
 
 
-export default maillRoutes;
+export default mailApp;

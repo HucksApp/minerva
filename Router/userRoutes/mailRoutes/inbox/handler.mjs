@@ -15,7 +15,6 @@ import  Filebox  from '../../../db/Model/fileBoxModel.mjs'
 export const getInboxHandler = (req, res) =>{
 
     if (req.session){
-        console.log(req.session)
         res.json(req.session)
     }else{
         res.send('Session Not Working')

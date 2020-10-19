@@ -70,13 +70,13 @@ export default class Users extends Model {
     }
 
 
-    addUser = user => {
+    static addUser = user => {
         // add user
         Users.create(user)
     }
 
 
-    deleteUser = id => {
+    static deleteUser = id => {
         //delete user
         Users.destroy(
             {
@@ -87,13 +87,18 @@ export default class Users extends Model {
         )
     }
 
-    getUser = async ({ id }) => {
+    static getUser = async ({ email, password }) => {
+
+        //encryting and decrypting of password before storage
+
+        //encrypt password <---> 
+        let decrytedPasswd;
 
 
-        const user = await Users.findAll(
+        const user = await Users.findOne(
             {
                 where: {
-                    [Op.or]: [{ userId: id }, { email: id }]
+                    [Op.and]: [{ hashedPassword: password }, { email }]
                 }
             }
         )
@@ -105,7 +110,7 @@ export default class Users extends Model {
 
 
     // admin alone
-    getAllUsers = async () => {
+    static getAllUsers = async () => {
 
         const allUser = await Users.findAll()
         return allUser

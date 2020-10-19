@@ -1,11 +1,38 @@
 import express from 'express'   
 
 import session from 'express-session'
+import cors from 'cors'
+import helmet from 'helmet'
+import bodyParser from 'body-parser'
 
-import maillRoutes from  './mailRoutes/mailRoute.mjs'
+
+import OAuthServer  from 'express-oauth-server'
+import { model } from '../../Authentications/authModel.mjs'
+
+
+import signinUser from './userHandler.mjs'
+import mailApp from  './mailRoutes/mailRoute.mjs'
 
 
 const userRoutes = express.Router();
+
+
+//setting is needed
+userRoutes.use(cors())
+
+//setting is needed
+userRoutes.use(helmet())
+
+userRoutes.oauth = new OAuthServer(
+                                {
+                                    model,
+                                    accessTokenLifetime:345600000,
+                                    allowEmptyState:false,
+                                    
+
+                                }
+)
+
 
 userRoutes.use(session(
                         {
@@ -24,7 +51,13 @@ userRoutes.use(session(
 ))
 
 
-userRoutes.use('/mail', maillRoutes)
+
+userRoutes.use(bodyParser.urlencoded({ extended: false }))
+userRoutes.use(bodyParser.json())
+
+
+userRoutes.post('/', signinUser)
+userRoutes.use('/mail', mailApp)
 
 
 export default userRoutes;
