@@ -10,7 +10,7 @@ import OAuthServer  from 'express-oauth-server'
 import { model } from '../../Authentications/authModel.mjs'
 
 
-import signinUser from './userHandler.mjs'
+import { signUser, logoutUser } from './userHandler.mjs'
 import mailApp from  './mailRoutes/mailRoute.mjs'
 
 
@@ -23,7 +23,7 @@ userRoutes.use(cors())
 //setting is needed
 userRoutes.use(helmet())
 
-userRoutes.oauth = new OAuthServer(
+userRoutes.oauth = new  OAuthServer(
                                 {
                                     model,
                                     accessTokenLifetime:345600000,
@@ -51,13 +51,19 @@ userRoutes.use(session(
 ))
 
 
+console.log(userRoutes.oauth.authorize())
 
 userRoutes.use(bodyParser.urlencoded({ extended: false }))
 userRoutes.use(bodyParser.json())
 
 
-userRoutes.post('/', signinUser)
+userRoutes.post('/', signUser)
+userRoutes.get('/',logoutUser)
 userRoutes.use('/mail', mailApp)
+
+
+
+
 
 
 export default userRoutes;

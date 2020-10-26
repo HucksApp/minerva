@@ -27,5 +27,4 @@ const data = {
 }
 
 
-
 console.log( mailer.sendText(data) )

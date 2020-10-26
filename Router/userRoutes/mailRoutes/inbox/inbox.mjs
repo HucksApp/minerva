@@ -1,5 +1,5 @@
 import express from 'express'   
-import {getInboxHandler} from './handler.mjs'
+import { getInboxHandler } from './handler.mjs'
 
 const inboxRoutes = express.Router();
 

@@ -70,9 +70,10 @@ export default class Users extends Model {
     }
 
 
-    static addUser = user => {
+    static addUser = async (user) => {
         // add user
-        Users.create(user)
+        let  newUser = await  Users.create(user)
+        return newUser
     }
 
 
@@ -87,18 +88,16 @@ export default class Users extends Model {
         )
     }
 
-    static getUser = async ({ email, password }) => {
+    static getUser = async ({ email  }) => {
 
-        //encryting and decrypting of password before storage
-
-        //encrypt password <---> 
-        let decrytedPasswd;
+        //encryting  of password before storage
+    
 
 
         const user = await Users.findOne(
             {
                 where: {
-                    [Op.and]: [{ hashedPassword: password }, { email }]
+                    email 
                 }
             }
         )
@@ -107,6 +106,23 @@ export default class Users extends Model {
 
 
     }
+
+    static getUserWithId = async ({ id  }) => {
+
+
+        const user = await Users.findOne(
+            {
+                where: {
+                    userId: id
+                }
+            }
+        )
+
+        return user
+
+
+    }
+
 
 
     // admin alone

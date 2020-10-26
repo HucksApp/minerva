@@ -1,21 +1,59 @@
-import User from '../../db/Model/usersModel.mjs'
+import Users from '../../db/Model/usersModel.mjs'
 
+import { encrypt_password, compare_password } from '../../Encryption/encrypt.mjs'
 
-
-export default async function signinUser (req, res){
+export async function signUser (req, res){
 
     if(req.body){
 
-        const { email, password } = req.body;  
-      const user =  await User.getUser({email, password})
-      if( user ){
-        const token = req.oauth.token()
+        const { email, password, newUser  } = req.body;  
+      const user =  await Users.getUser({ email })
+      if( user && !newUser ){
 
-        res.status(200).json({message:'Success', validity: true, user })
+        let isUser =  await  compare_password(password, user['hashedPassword'])
+        if (isUser){
+           
+          req.session.userId = user['userId']
+         console.log(req.session.id,req.session.userId)
+        //sign in
+  
+          res.status(200).json({ message:'Session Created', validity: true, user })
+
+        }else{
+          res.status(200).json({ message:'Invalid Credentials', validity: false})
+        }
+
+       
+      }else if (!user && newUser){
+        const { firstName, lastName  } = req.body;
+        //new user sign up
+    
+        let hashedPassword = await encrypt_password( password )
+
+        const user = await Users.addUser( { firstName, lastName,  email,  hashedPassword } )
+        const token =  req.oauth.token()
+        req.session.id = token
+        console.log(token)
+
+
+        res.status(200).json( { message:'Session Created', validity: true, user } )
+
+
       }else
-        res.status(200).json({message:'User Do Not Exists', validity: false })
+        res.status(200).json( { message:'User Do Not Exists', validity: false } )
     }
+
     
 
 
+}
+
+
+
+export async function logoutUser (req, res){
+
+              req.session.destroy(
+                        ()=>
+               res.json({ message:'Session Terminated ', validity:false })
+              )
 }

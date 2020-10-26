@@ -4,8 +4,18 @@ import Users from '../db/Model/usersModel.mjs'
 export const model = {
 
 
-    getUser:()=>{
+    getClient: (client_id, Client_secret)=>{
+        console.log(here)
+    },
 
+
+    getUser:async (id)=>{
+       let  user = await Users.getUserWithId(id)
+       if(user){
+            return user
+       }else{
+           return false
+       }
     },
 
     saveAccessToken:(token, client, user)=>{
@@ -16,9 +26,6 @@ export const model = {
         console.log('here')
     },
 
-    getClient: (client_id, Client_secret)=>{
-
-    },
     
     saveAuthorizationCode: ()=>{
         console.log('here')

@@ -1,6 +1,6 @@
 
-import nodemailer  from 'nodemailer'
-import socks from 'socks'
+import nodemailer  from 'nodemailer';
+import socks from 'socks';
 
 
 
@@ -36,8 +36,10 @@ import socks from 'socks'
                 port:2525,
                 pool,
                 auth:{
+
                     user:process.env.SMPT_USERNAME,
                     pass:process.env.SMTP_PASSWORD
+
                     }                   
 
                 } 
