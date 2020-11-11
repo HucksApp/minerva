@@ -26,22 +26,16 @@ const inboxTable = async (Inbox, db, Sequelize) => {
             isEmail: true,
 
         },
+        /*
         userId: {
             type: DataTypes.UUID,
-            defaultValue: Sequelize.UUIDV4,
-            unique: true,
-        },
+            allowNull: false,
+        },*/
         toEmail: {
 
             type: DataTypes.STRING(200),
             allowNull: false,
             isEmail: true
-            // add the referenced table first ---->  User
-
-            //,references:{
-            //    model: 'User',
-            //    key:'username'
-            //}
 
         },
         subject: {
@@ -101,7 +95,7 @@ export default class Inbox extends Model {
 
 
     // Admin priviledge alone
-    async getAllInbox() {
+    static  async getAllInbox() {
 
         let inbox = await Inbox.findAll()
 
@@ -113,12 +107,11 @@ export default class Inbox extends Model {
 
 
 
-    async getInbox({ email, id }) {
+    static async getInbox( id ) {
 
         let inbox = await Inbox.findAll({
             where: {
-                email,
-                messageId: id
+                userId: id
             }
         })
 
@@ -129,7 +122,7 @@ export default class Inbox extends Model {
 
 
 
-    saveToInbox(data) {
+    static saveToInbox(data) {
         // save single 
 
         Inbox.create(data)
@@ -140,7 +133,7 @@ export default class Inbox extends Model {
 
 
 
-    deleteFromInbox({ email, id }) {
+    static deleteFromInbox({ userId, messageId }) {
 
         // delete single or multiple selected  messages from inbox
 
@@ -149,8 +142,8 @@ export default class Inbox extends Model {
         Inbox.destroy(
             {
                 where: {
-                    messageId: id,
-                    email
+                    messageId,
+                    userId
                 }
             }
         )

@@ -16,9 +16,13 @@ const sentBoxTable = async (Sentbox, db, Sequelize) => {
             defaultValue: Sequelize.UUIDV4,
             unique: true,
             primaryKey: true
-        },
+        },/*
+        userId: {
+            type: DataTypes.UUID,
+            allowNull: false,
+        },*/
 
-        email: {
+        fromEmail: {
             type: DataTypes.STRING(200),
             allowNull: false,
             isEmail: true,
@@ -29,18 +33,18 @@ const sentBoxTable = async (Sentbox, db, Sequelize) => {
             type: DataTypes.STRING(200),
             allowNull: false,
             isEmail: true
-            // add the referenced table first ---->  User
-            /*
-            ,references:{
-                model: 'User',
-                key:'username'
-            }*/
 
         },
         subject: {
             type: DataTypes.STRING(150),
             allowNull: true
 
+        },
+        attachmentFile: {
+            // related to  file model if true
+
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         },
         message: {
             type: DataTypes.STRING(600),
@@ -77,7 +81,7 @@ export default class Sentbox extends Model {
 
     }
 
-    async getAllSentbox() {
+    static  async getAllSentbox() {
 
         // get all selected messages
 
@@ -92,11 +96,11 @@ export default class Sentbox extends Model {
 
 
 
-    async getSentbox(id) {
+    static async getSentbox(id) {
         let sentMessages = await Sentbox.findAll(
             {
                 where: {
-                    messageId: id
+                    userUserId: id
                 }
             }
         )
@@ -105,7 +109,7 @@ export default class Sentbox extends Model {
 
 
 
-    addToSentbox(data) {
+    static addToSentbox(data) {
 
         // save single or  multiple to messages to sentbox
         if (Array.isArray(data)) {
@@ -117,21 +121,23 @@ export default class Sentbox extends Model {
             Sentbox.create(data)
         }
 
-
     }
 
-    deleteFromSentbox(ids) {
+
+
+    static  deleteFromSentbox({ userId, messageId }) {
 
         // delete single or multiple selected  messages from sentbox
 
         // NOTE::   -> save deleted mesage to DeleteBox
-        if (Array.isArray(ids)) {
+        if (Array.isArray(messageId)) {
 
-            for (id in ids)
+            for (id in messageId)
                 Sentbox.destroy(
                     {
                         where: {
-                            messageId: id
+                            messageId : id,
+                            userUserId: userId
                         }
                     }
                 )
@@ -141,7 +147,8 @@ export default class Sentbox extends Model {
             Sentbox.destroy(
                 {
                     where: {
-                        messageId: id
+                        messageId,
+                        userId
                     }
                 }
             )
@@ -149,16 +156,12 @@ export default class Sentbox extends Model {
         }
 
 
-
-
-
     }
 
 
 
 
-
-
+    
 
 }
 

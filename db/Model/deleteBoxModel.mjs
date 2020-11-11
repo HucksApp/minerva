@@ -30,14 +30,14 @@ const startDeleteboxTable = async (Deletebox, db, Sequelize) => {
             allowNull: false,
             isEmail: true
 
-        },
-
-        email: {
-            type: DataTypes.STRING(200),
+        }
+        /*,
+        userId: {
+            type: DataTypes.UUID,
             allowNull: false,
-            isEmail: true,
+        }*/
+        ,
 
-        },
         subject: {
             type: DataTypes.STRING(150),
             allowNull: true
@@ -78,7 +78,7 @@ export default class Deletebox extends Model {
 
     }
 
-    async getAllDeletebox() {
+    static async getAllDeletebox() {
 
         //get All message
         let deletedMessages = await Deletebox.findAll()
@@ -87,14 +87,14 @@ export default class Deletebox extends Model {
 
     }
 
-    async getDeletebox(id) {
+    static  async getDeletebox(id) {
 
         //get All message
         let deletedMessages = await Deletebox.findAll(
 
             {
                 where: {
-                    messageId: id
+                    userUserId: id
                 }
             }
         )
@@ -104,13 +104,28 @@ export default class Deletebox extends Model {
     }
 
 
+    static async updateTable (toUpdateWith, whereToUpdate)
+    
+    {
+        Deletebox.update(toUpdateWith,
+                                {
+                                    where:{
+                                        ...whereToUpdate
+                                    }
+                                } 
+                        )
+
+
+    }
 
 
 
 
 
 
-    addToDeletebox(data) {
+
+
+    static   addToDeletebox(data) {
         // save single or  multiple to messages to deletebox
         if (Array.isArray(data)) {
             for (obj in data)
@@ -122,16 +137,17 @@ export default class Deletebox extends Model {
 
     }
 
-    deleteFromDeletebox(ids) {
+    static  deleteFromDeletebox({ userId, messageId }) {
 
         // delete single or multiple selected  messages from deletebox
-        if (Array.isArray(ids)) {
+        if (Array.isArray(messageId)) {
 
-            for (id in ids)
+            for (id in messageId)
                 Deletebox.destroy(
                     {
                         where: {
-                            messageId: id
+                            messageId: id,
+                            userUserId: userId
                         }
                     })
 
@@ -139,7 +155,8 @@ export default class Deletebox extends Model {
             Deletebox.destroy(
                 {
                     where: {
-                        messageId: ids
+                        messageId,
+                        userUserId: userId
                     }
                 })
         }

@@ -2,6 +2,9 @@ import Users from '../../db/Model/usersModel.mjs'
 
 import { encrypt_password, compare_password } from '../../Encryption/encrypt.mjs'
 
+
+
+
 export async function signUser (req, res){
 
     if(req.body){
@@ -39,15 +42,20 @@ export async function signUser (req, res){
         res.status(200).json( { message:'Session Created', validity: true, user } )
 
 
+      }else if (user && newUser){
+
+        res.status(302).json( { message:'Bad Registration Credentials', validity: false } )
+
+
       }else
-        res.status(200).json( { message:'User Do Not Exists', validity: false } )
+        res.status(400).json( { message:'User Do Not Exists', validity: false } )
     }
 
     
 
 
 }
-
+2
 
 
 export async function logoutUser (req, res){

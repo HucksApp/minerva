@@ -53,7 +53,7 @@ userRoutes.use(session(
 
 console.log(userRoutes.oauth.authorize())
 
-userRoutes.use(bodyParser.urlencoded({ extended: false }))
+userRoutes.use(bodyParser.urlencoded({ extended: true , limit:'100mb'}))
 userRoutes.use(bodyParser.json())
 
 

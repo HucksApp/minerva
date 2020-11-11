@@ -27,11 +27,11 @@ export default async function createDb() {
 
     await runDbConnectTest(db)
 
-    Users.startUserbox(Users, db, Sequelize)
-    Inbox.startInbox(Inbox, db, Sequelize)
-    Sentbox.startSentbox(Sentbox, db, Sequelize)
-    Deletebox.startDeletebox(Deletebox, db, Sequelize)
-    Filebox.startFilebox(Filebox, db, Sequelize)
+    Users.startUserbox( Users, db, Sequelize )
+    Inbox.startInbox( Inbox, db, Sequelize )
+    Sentbox.startSentbox( Sentbox, db, Sequelize )
+    Deletebox.startDeletebox( Deletebox, db, Sequelize )
+    Filebox.startFilebox( Filebox, db, Sequelize )
 
     //User Relations
     let boxArray = [Inbox, Sentbox, Deletebox, Filebox];
@@ -40,6 +40,8 @@ export default async function createDb() {
     boxArray.forEach(box => {
 
 
+
+// user Associations --> Foreign Key
 
         let userForeignKeys = {
             hasRel: 'hasMany',
@@ -58,7 +60,41 @@ export default async function createDb() {
     });
 
 
+
+
+
+    //File Association --> Foreign key
+    let nwBoxArray = [Inbox, Sentbox ]
+
+    let nwrelList = []
+
+
+    nwBoxArray.forEach(  box =>{
+
+        let userForeignKeys2 = {
+
+                hasRel: 'hasMany',
+                belongRel: 'belongsTo',
+                fromModel: box,
+                toModel: Filebox,
+                field: {
+                    foreignKey: 'messageId',
+
+                }
+
+        }
+
+
+        nwrelList.push(userForeignKeys2)
+
+
+    })
+
+
+
+
     configRelation(relList);
+    configRelation(nwrelList);
 
 
 

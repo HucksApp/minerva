@@ -1,22 +1,18 @@
 import express from 'express'   
 import inboxRouter from './inbox/inbox.mjs'
-//import sentboxRouter from './inbox/sentbox.mjs'
-
+import sentboxRouter from './sentbox/sentbox.mjs'
+import deleteboxRouter from './deletebox/deletebox.mjs'
+import fileRouter from './filebox/fileRoutes.mjs'
 
 const mailApp = express();
 
 
-/*
-maillRoutes.use('/mail', ()=>{
-
-                
-})
-
-*/
-
-
 mailApp.use('/inbox', inboxRouter)
-//maillRoutes.use('/sentbox', sentboxRouter)
+mailApp.use('/sentbox', sentboxRouter)
+mailApp.use('/deletebox', deleteboxRouter)
+mailApp.use('/files', fileRouter)
+
+
 
 
 

@@ -18,17 +18,10 @@ const fileBoxTable = async (Filebox, db, Sequelize) => {
             primaryKey: true
         },
 
-        attachedId: {
-            type: DataTypes.STRING(200),
-            allowNull: false,
-            isEmail: true,
-
-        },
         email: {
             type: DataTypes.STRING(200),
             allowNull: false,
             isEmail: true,
-
         },
         messageType: {
 
@@ -42,9 +35,15 @@ const fileBoxTable = async (Filebox, db, Sequelize) => {
             allowNull: true
 
         },
+
+        fileName: {
+            type: DataTypes.STRING(150),
+            allowNull: false
+
+        },
         fileContent: {
-            type: DataTypes.STRING(600),
-            allowNull: false,
+            type: DataTypes.BLOB,
+            allowNull: false
         },
         date: {
             type: DataTypes.DATE,
@@ -79,45 +78,24 @@ export default class Filebox extends Model {
 
     }
 
-    getFiles = async (data) => {
+   static getFiles = async (id) => {
 
-        if (Array.isArray(data)) {
-            let fileobjList = []
-            for (obj in data) {
 
-                let file = await Filebox.findAll({
-                    where: {
-                        attachedId: obj.attachedId,
-                        creationId: obj.creationId
+    let files = await Filebox.findAll({
+        where: {
+            userId: id
 
-                    }
-
-                })
-                fileobjList.push(file)
-
-            }
-            return fileobjList
-
-        } else {
-
-            let file = await Filebox.findAll({
-                where: {
-                    attachedId: data.attachedId,
-                    creationId: data.creationId
-
-                }
-
-            })
-
-            return file
         }
 
+    })
+
+    return files
 
     }
 
 
 
-    addFiles = data => {
+  static  addFiles = data => {
 
         // save single or  multiple to files to filebox
         if (Array.isArray(data)) {
@@ -137,14 +115,15 @@ export default class Filebox extends Model {
 
 
 
-    deleteFile = id => {
+  static  deleteFile = ( { userId, messageId } ) => {
 
         // delete single 
 
         Filebox.destroy(
             {
                 where: {
-                    creationId: id
+                    userId,
+                    messageId
                 }
             }
         )
